@@ -1,6 +1,4 @@
-==================================================
 PROYECTO: BinaryShop - Prototipo Web (Fase II)
-==================================================
 
 INTEGRANTES DEL EQUIPO:
 
@@ -8,5 +6,3 @@ INTEGRANTES DEL EQUIPO:
 - 27995261 Webster Oropeza
 
 Sección C4
-
-==================================================
