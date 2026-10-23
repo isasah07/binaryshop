@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinaryShop - Portal Vendedor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendedor.css">
+</head>
+<body>
+
+  <!-- Encabezado Principal Unificado -->
+  <header>
+    <a href="../inicio/index.html" class="logo">
+      <span>BinaryShop</span>
+      <span class="logo-badge">VENDEDOR</span>
+    </a>
+    
+    <!-- Pastilla de Usuario Activo en el Header -->
+    <nav style="display: flex; gap: 0.75rem; align-items: center;">
+      <div id="header-user-status" class="user-pill hidden">
+        <div class="avatar" id="header-avatar">V</div>
+        <span id="header-user-name">@vendedor</span>
+        <button class="btn-logout" onclick="cerrarSesionVendedor()" title="Cerrar Sesión">Salir</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    
+    <!-- Encabezado del Panel y Botón de Publicar -->
+    <div class="dashboard-header">
+      <div>
+        <h1 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.25rem;">Panel del Vendedor</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Gestión de publicaciones y catálogo activo</p>
+      </div>
+      <button class="btn" style="width: auto; padding: 0.75rem 1.25rem;" onclick="togglePublishForm()">
+        <span id="sell-btn-icon">➕</span> <span id="sell-btn-text">Publicar producto</span>
+      </button>
+    </div>
+
+    <!-- FORMULARIO DESPLEGABLE: PUBLICAR / EDITAR PRODUCTO -->
+    <div id="publish-form-box" class="publish-box hidden">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--card-border);">
+        <h3 id="form-box-title" style="color: var(--accent); font-size: 1.25rem;">📦 Formulario de Publicación</h3>
+        <button type="button" class="btn btn-secondary" style="width: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="togglePublishForm()">Cancelar</button>
+      </div>
+      
+      <form onsubmit="handlePublishOrUpdate(event)">
+        <input type="hidden" id="edit-prod-id">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre del Producto</label>
+            <input type="text" id="prod-name" placeholder="Ej. Teclado Mecánico RGB" required>
+          </div>
+          <div class="form-group">
+            <label>Precio ($ USD)</label>
+            <input type="number" step="0.01" id="prod-price" placeholder="49.99" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>URL de Imagen</label>
+          <input type="url" id="prod-image" placeholder="https://images.unsplash.com/photo-1587829741301-dc798b83add3" required>
+        </div>
+        <div class="form-group">
+          <label>Descripción detallada</label>
+          <textarea id="prod-desc" rows="3" placeholder="Describe las características del producto..." required></textarea>
+        </div>
+        <button type="submit" class="btn" id="submit-pub-btn">Confirmar y Publicar Producto</button>
+      </form>
+    </div>
+
+    <!-- SECCIÓN: PUBLICACIONES ACTIVAS -->
+    <section class="active-listings-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.1rem; font-weight: 700;">🏷️ Publicaciones Activas</h3>
+        <span class="badge" id="active-badge">0 Publicadas</span>
+      </div>
+      <div class="products-grid" id="active-products-grid">
+        <!-- Renderizado dinámico de tarjetas -->
+      </div>
+    </section>
+
+    <!-- HISTORIAL DE VENTAS REALIZADAS -->
+    <section class="table-container" style="margin-top: 2.5rem;">
+      <div style="padding: 1.25rem; font-weight: 700; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; background: #111827;">
+        <span>Historial de Ventas Realizadas</span>
+        <span style="background: var(--accent-light); color: var(--accent); padding: 0.25rem 0.6rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700;">Sincronizado</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Transacción</th>
+            <th>Producto</th>
+            <th>Comprador</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family: monospace;">#TX-9082</td>
+            <td><strong>Monitor Gamer 27" 144Hz</strong></td>
+            <td>@comprador_juan</td>
+            <td>2026-10-20</td>
+            <td style="color: var(--accent); font-weight: 700;">$299.99</td>
+          </tr>
+          <tr>
+            <td style="font-family: monospace;">#TX-8741</td>
+            <td><strong>Mouse Inalámbrico Pro</strong></td>
+            <td>@maria_buyer</td>
+            <td>2026-10-18</td>
+            <td style="color: var(--accent); font-weight: 700;">$49.99</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <!-- MODAL: DETALLES DE LA PUBLICACIÓN (EDITAR Y ELIMINAR) -->
+  <div id="modal-container" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title" style="font-size: 1.1rem; font-weight: 700;">Detalles de la Publicación</h3>
+        <button onclick="closeModal()" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.25rem;">✕</button>
+      </div>
+      <div class="modal-body">
+        <img id="modal-img" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--card-border);" src="" alt="">
+        <div id="modal-id" style="font-size: 0.85rem; color: var(--accent); font-family: monospace; font-weight: 600; margin-bottom: 0.25rem;">PROD-1001</div>
+        <div id="modal-price" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem;">$0.00</div>
+        <p id="modal-desc" style="color: #d1d5db; font-size: 0.9rem; line-height: 1.5;"></p>
+
+        <!-- Acciones del Modal -->
+        <div class="modal-actions" id="modal-main-actions">
+          <button class="btn btn-secondary" onclick="startEditingFromModal()">✏️ Editar Publicación</button>
+          <button class="btn btn-danger" onclick="showDeleteConfirm()">🗑️ Eliminar Publicación</button>
+        </div>
+
+        <!-- Confirmación de Eliminación -->
+        <div class="confirm-box hidden" id="modal-delete-confirm">
+          <p style="font-size: 0.9rem; color: #fca5a5; font-weight: 600; margin-bottom: 0.75rem;">¿Confirmar eliminación de esta publicación?</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-danger" style="padding: 0.5rem;" onclick="confirmDeleteProduct()">Sí, Eliminar</button>
+            <button class="btn btn-secondary" style="padding: 0.5rem;" onclick="hideDeleteConfirm()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="vendedor.js"></script>
+</body>
+</html>

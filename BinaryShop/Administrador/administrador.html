@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinaryShop - Panel Administrador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="administrador.css">
+</head>
+<body>
+
+  <!-- Encabezado Unificado -->
+  <header>
+    <a href="../inicio/index.html" class="logo">
+      <span>BinaryShop</span>
+      <span class="logo-badge">ADMINISTRADOR</span>
+    </a>
+    
+    <!-- Pastilla de Usuario Activo en el Header -->
+    <nav style="display: flex; gap: 0.75rem; align-items: center;">
+      <div id="header-user-status" class="user-pill hidden">
+        <div class="avatar" id="header-avatar">A</div>
+        <span id="header-user-name">@admin</span>
+        <button class="btn-logout" onclick="cerrarSesionAdmin()" title="Cerrar Sesión">Salir</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.25rem;">Panel de Control de Administrador</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Supervisión y gestión general de usuarios y publicaciones del sistema</p>
+    </div>
+
+    <!-- SECCIÓN 1: GESTIÓN DE USUARIOS -->
+    <section class="admin-section">
+      <div class="section-header">
+        <h2>👥 Gestión de Perfiles de Usuario</h2>
+        <span class="badge" id="user-count-badge">0 Registrados</span>
+      </div>
+      
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Usuario / Nickname</th>
+              <th>Nombre Completo</th>
+              <th>Rol</th>
+              <th>Dirección</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="usuarios-table-body">
+            <!-- Renderizado dinámico -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: GESTIÓN DE PUBLICACIONES -->
+    <section class="admin-section" style="margin-top: 2.5rem;">
+      <div class="section-header">
+        <h2>📦 Gestión de Publicaciones Activas</h2>
+        <span class="badge" id="prod-count-badge">0 Publicadas</span>
+      </div>
+      
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID Producto</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="productos-table-body">
+            <!-- Renderizado dinámico -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-container"></div>
+  <script src="administrador.js"></script>
+</body>
+</html>

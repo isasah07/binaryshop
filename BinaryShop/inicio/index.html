@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinaryShop - Inicio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Encabezado Principal Dinámico -->
+  <header>
+    <a href="index.html" class="logo">
+      <span>BinaryShop</span>
+      <span class="logo-badge">INICIO</span>
+    </a>
+
+    <!-- Estado de usuario en el encabezado (Si hay sesión activa) -->
+    <div id="header-user-status" class="user-pill hidden">
+      <div class="avatar" id="header-avatar">U</div>
+      <span id="header-user-name">@usuario</span>
+      <button class="btn-logout" onclick="cerrarSesion()" title="Cerrar Sesión">🚪 Salir</button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <main class="main-content" style="max-width: 1100px;">
+
+      <!-- 1. VISTA DE SELECCIÓN DE ROL -->
+      <div id="view-role-select" class="role-selection-container">
+        <h1>¡Bienvenido a BinaryShop!</h1>
+        <p>Selecciona el tipo de cuenta o rol con el que deseas ingresar:</p>
+        
+        <div class="role-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="role-card" onclick="seleccionarRol('Comprador')">
+            <div class="role-icon">🛍️</div>
+            <h3>Comprador</h3>
+            <p>Explora productos, agrega al carrito y realiza compras de forma segura.</p>
+          </div>
+
+          <div class="role-card" onclick="seleccionarRol('Vendedor')">
+            <div class="role-icon">📦</div>
+            <h3>Vendedor</h3>
+            <p>Publica tus artículos, gestiona inventario y revisa tu historial.</p>
+          </div>
+
+          <div class="role-card" onclick="seleccionarRol('Administrador')">
+            <div class="role-icon">⚙️</div>
+            <h3>Administrador</h3>
+            <p>Control total del sistema, usuarios y supervisión general.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 2.5rem;">
+          <button class="btn btn-secondary" style="max-width: 320px; margin: 0 auto;" onclick="mostrarVista('register')">📝 ¿Eres nuevo usuario? Regístrate</button>
+        </div>
+      </div>
+
+      <!-- 2. FORMULARIO DE INICIO DE SESIÓN -->
+      <div id="view-login" class="form-card hidden">
+        <h2 class="form-title" id="login-title">Iniciar Sesión</h2>
+        <p class="form-subtitle" id="login-subtitle">Ingresa tus credenciales para acceder</p>
+        
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Usuario / Nickname</label>
+            <input type="text" id="login-user" placeholder="Ej. agomez" required>
+          </div>
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" id="login-pass" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn">Ingresar al Sistema</button>
+          <button type="button" class="btn btn-secondary" style="margin-top: 0.75rem;" onclick="mostrarVista('role-select')">← Volver a selección</button>
+        </form>
+      </div>
+
+      <!-- 3. FORMULARIO DE REGISTRO / ACTUALIZACIÓN DE DATOS Y ROL -->
+      <div id="view-register" class="form-card hidden" style="max-width: 540px;">
+        <h2 class="form-title">Registro de usuario</h2>
+        <p class="form-subtitle">Completa tus datos personales, bancarios y selecciona tu rol</p>
+        
+        <form onsubmit="handleRegister(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" id="reg-nombre" placeholder="Ej. Ana" required>
+            </div>
+            <div class="form-group">
+              <label>Apellido</label>
+              <input type="text" id="reg-apellido" placeholder="Ej. Gómez" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Dirección</label>
+            <input type="text" id="reg-direccion" placeholder="Ej. Av. Principal, Calle 4" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Usuario / Nickname</label>
+              <input type="text" id="reg-user" placeholder="Ej. anagomez" required>
+            </div>
+            <div class="form-group">
+              <label>Contraseña</label>
+              <input type="password" id="reg-pass" placeholder="••••••••" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Datos Bancarios</label>
+            <input type="text" id="reg-banco" placeholder="Nro. de tarjeta de crédito/débito" required>
+          </div>
+
+          <div class="form-group">
+            <label>Rol Deseado</label>
+            <select id="reg-rol" style="width: 100%; padding: 0.75rem 1rem; background: #0d1322; border: 1px solid var(--card-border); border-radius: 8px; color: var(--text); font-size: 0.95rem; outline: none;">
+              <option value="Comprador">Comprador</option>
+              <option value="Vendedor">Vendedor</option>
+            </select>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.35rem;">* Si ya eres comprador y seleccionas vendedor, tu cuenta se actualizará.</small>
+          </div>
+
+          <button type="submit" class="btn" style="margin-top: 1rem;">Guardar y Continuar</button>
+          <button type="button" class="btn btn-secondary" style="margin-top: 0.75rem;" onclick="mostrarVista('role-select')">← Volver</button>
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="index.js"></script>
+</body>
+</html>

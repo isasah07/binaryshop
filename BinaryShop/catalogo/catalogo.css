@@ -1,0 +1,226 @@
+:root {
+  --bg: #0b0f19;
+  --card-bg: #111827;
+  --card-border: #1f2937;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-light: rgba(16, 185, 129, 0.1);
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+header {
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky; top: 0; z-index: 100;
+  padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+
+.logo { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.75rem; 
+  font-size: 1.25rem; 
+  font-weight: 800; 
+  color: var(--text); 
+  text-decoration: none; 
+}
+.logo:visited { color: var(--text); }
+
+.logo-badge { 
+  background: linear-gradient(135deg, var(--accent), #047857); 
+  color: white; 
+  padding: 0.25rem 0.5rem; 
+  border-radius: 6px; 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  text-transform: uppercase;
+}
+
+nav {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+/* Botón del Carrito */
+.btn-header {
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: background 0.2s;
+}
+.btn-header:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Pastilla de Usuario Activo en Header */
+.user-pill { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.75rem; 
+  background: #1f2937; 
+  padding: 0.35rem 0.75rem; 
+  border-radius: 9999px; 
+  border: 1px solid var(--card-border); 
+  font-size: 0.875rem; 
+}
+
+.avatar { 
+  width: 28px; 
+  height: 28px; 
+  background: var(--accent); 
+  color: white; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-weight: 700; 
+  font-size: 0.8rem; 
+}
+
+.btn-logout {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  transition: background 0.2s;
+}
+.btn-logout:hover { 
+  background: var(--accent-hover); 
+}
+
+.hidden { display: none !important; }
+
+/* Buscador */
+.buscador-container input {
+  padding: 0.6rem 1rem;
+  width: 220px;
+  background: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.buscador-container input:focus {
+  border-color: var(--accent);
+  background: #374151;
+}
+
+/* Layout y Tarjetas */
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+main h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.tarjeta-producto {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s;
+  text-align: center;
+}
+
+.tarjeta-producto:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.tarjeta-producto img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: #1f2937;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.tarjeta-producto h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.tarjeta-producto p {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.btn-comprar {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.65rem;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-comprar:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-carrito {
+  background-color: #1f2937;
+  color: var(--text);
+  border: 1px solid var(--card-border);
+  width: 100%;
+  padding: 0.65rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-carrito:hover {
+  border-color: var(--accent);
+  background: #374151;
+}

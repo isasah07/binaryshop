@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinaryShop - Carrito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+
+  <header>
+    <a href="../catalogo/catalogo.html" class="logo">
+      <span>BinaryShop</span>
+      <span class="logo-badge">CARRITO</span>
+    </a>
+    
+    <nav style="display: flex; gap: 0.75rem; align-items: center;">
+      <a href="../catalogo/catalogo.html"><button class="btn-header">Volver al Catálogo</button></a>
+
+      <!-- Pastilla de Usuario Activo en el Header -->
+      <div id="header-user-status" class="user-pill hidden">
+        <div class="avatar" id="header-avatar">U</div>
+        <span id="header-user-name">@usuario</span>
+        <button class="btn-logout" onclick="cerrarSesionCarrito()" title="Cerrar Sesión">Salir</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="caja-carrito">
+    <h2>Productos Seleccionados</h2>
+    <p>Cantidad total de productos: <span id="conteo-productos">0</span></p>
+    
+    <ul id="lista-carrito">
+      <!-- Los elementos se cargan con JavaScript -->
+    </ul>
+
+    <h3>Total a Pagar: $<span id="total-pagar">0.00</span></h3>
+
+    <div class="envio-container">
+      <label for="input-direccion"><b>Dirección de envío:</b></label><br>
+      <input type="text" id="input-direccion" placeholder="Ej: Av. Principal, Casa #123">
+    </div>
+
+    <button class="btn-pagar" onclick="procesarPago()">Proceder al Pago</button>
+  </main>
+
+  <script src="carrito.js"></script>
+</body>
+</html>

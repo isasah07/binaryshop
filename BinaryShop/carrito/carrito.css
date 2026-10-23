@@ -1,0 +1,248 @@
+:root {
+  --bg: #0b0f19;
+  --card-bg: #111827;
+  --card-border: #1f2937;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+header {
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky; top: 0; z-index: 100;
+  padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+
+nav {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+/* Botones del encabezado en verde esmeralda */
+.btn-header {
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: background 0.2s;
+}
+
+.btn-header:hover {
+  background-color: var(--accent-hover);
+}
+
+.caja-carrito {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 650px;
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.caja-carrito h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.caja-carrito p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.caja-carrito h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1.0rem;
+  color: var(--text);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column; /* Alineación vertical uniforme para todos los productos */
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.acciones-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.acciones-item button {
+  padding: 0.35rem 0.75rem;
+  background: #1f2937;
+  color: var(--text);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.acciones-item button:hover {
+  background: #374151;
+  border-color: var(--accent);
+}
+
+.btn-eliminar {
+  background-color: var(--danger) !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background-color: var(--danger-hover) !important;
+}
+
+.btn-pagar {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.85rem;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.btn-pagar:hover {
+  background-color: var(--accent-hover);
+}
+
+.envio-container {
+  margin: 1.25rem 0;
+}
+
+.envio-container label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+.envio-container input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.envio-container input:focus {
+  border-color: var(--accent);
+  background: #374151;
+}
+
+/* Estilos para el logo unificado en el encabezado */
+.logo { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.75rem; 
+  font-size: 1.25rem; 
+  font-weight: 800; 
+  color: var(--text); 
+  text-decoration: none; 
+}
+
+.logo:visited {
+  color: var(--text);
+}
+
+.logo-badge { 
+  background: linear-gradient(135deg, var(--accent), #047857); 
+  color: white; 
+  padding: 0.25rem 0.5rem; 
+  border-radius: 6px; 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  text-transform: uppercase;
+}
+
+/* Pastilla de Usuario Activo en Header */
+.user-pill { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.75rem; 
+  background: #1f2937; 
+  padding: 0.35rem 0.75rem; 
+  border-radius: 9999px; 
+  border: 1px solid var(--card-border); 
+  font-size: 0.875rem; 
+}
+
+.avatar { 
+  width: 28px; 
+  height: 28px; 
+  background: var(--accent); 
+  color: white; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-weight: 700; 
+  font-size: 0.8rem; 
+}
+
+.btn-logout {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover { 
+  background: var(--accent-hover); 
+}
+
+.hidden { display: none !important; }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinaryShop - Catálogo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="catalogo.css">
+</head>
+<body>
+
+  <header>
+    <a href="../inicio/index.html" class="logo">
+      <span>BinaryShop</span>
+      <span class="logo-badge">CATÁLOGO</span>
+    </a>
+
+    <div class="buscador-container">
+      <input type="text" id="input-buscar" placeholder="Buscar producto..." onkeyup="filtrarProductos()">
+    </div>
+
+    <nav>
+      <a href="../carrito/carrito.html"><button class="btn-header">🛒 Carrito (<span id="contador-carrito">0</span>)</button></a>
+      
+      <!-- Pastilla de Usuario Activo en el Header -->
+      <div id="header-user-status" class="user-pill hidden">
+        <div class="avatar" id="header-avatar">U</div>
+        <span id="header-user-name">@usuario</span>
+        <button class="btn-logout" onclick="cerrarSesionCatalogo()" title="Cerrar Sesión">Salir</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Productos Disponibles</h2>
+    <div id="contenedor-productos" class="grid-productos"></div>
+  </main>
+
+  <script src="catalogo.js"></script>
+</body>
+</html>
